@@ -3,16 +3,57 @@ module.exports = {
     dest:'dist',
     title: 'Cyy\'s blog',
     description: '我的博客',
-    markdown: {
-        lineNumbers: false // 代码块显示行号
-    },
     themeConfig: {
+        editLinks: false,
+        docsDir: 'docs',
+        lastUpdated: 'Last Updated',
+        smoothScroll: true,
         nav:[ // 导航栏配置
-        {text: '前端', link: '/accumulate/' },
-        {text: '算法', link: '/algorithm/'},
-        {text: 'GitHub', link: 'https://github.com/Chenyuanyuan299'}      
+            { 
+                text: '前端',
+                ariaLabel: 'Frontend',
+                items: [
+                    {text : 'JS', link: '/JS/'},
+                    {text : 'CSS', link: '/CSS/'},
+                    {text : 'HTTP', link: '/HTTP/'},
+                ]
+            },
+            {text: 'GitHub', link: 'https://github.com/Chenyuanyuan299'}      
         ],
-        sidebar: 'auto', // 侧边栏配置
-        sidebarDepth: 2, // 侧边栏显示2级
+        sidebar: {
+            '/JS/': getFrontend(),
+            '/CSS': getCSS(),
+            '/HTTP': getHTTP()
+        }
     }
+}
+
+
+function getFrontend() { 
+    return [
+        {
+            title: 'JavaScript',
+            children: []
+        }
+    ]
+}
+
+function getCSS() { 
+    return [
+        {
+            title: 'CSS',
+            children: []
+        }
+    ]
+}
+
+function getHTTP() { 
+    return [ 
+        { 
+            title: 'HTTP',
+            children: [
+                'beforeHTTP',
+            ]
+        }
+    ]
 }
