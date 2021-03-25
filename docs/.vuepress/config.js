@@ -16,14 +16,28 @@ module.exports = {
                     {text : 'JS', link: '/JS/'},
                     {text : 'CSS', link: '/CSS/'},
                     {text : 'HTTP', link: '/HTTP/'},
+                    {text : '浏览器', link: '/Browser/'},
+                    {text : 'Vue', link: '/Vue/'},
+                    {text : 'React', link: '/React/'},  
+                ]
+            },
+            {
+                text: 'LeetCode', 
+                ariaLabel: 'LeetCode',
+                items: [ 
+                    {text: 'LeetCode', link: '/LeetCode/List/'}
                 ]
             },
             {text: 'GitHub', link: 'https://github.com/Chenyuanyuan299'}      
         ],
         sidebar: {
             '/JS/': getFrontend(),
-            '/CSS': getCSS(),
-            '/HTTP': getHTTP()
+            '/CSS/': getCSS(),
+            '/HTTP/': getHTTP(),
+            '/Browser/': getBrowser(),
+            '/Vue/': getVue(),
+            '/React/': getReact(),
+            '/LeetCode/List/': getList()
         }
     }
 }
@@ -53,6 +67,60 @@ function getHTTP() {
             title: 'HTTP',
             children: [
                 'beforeHTTP',
+            ]
+        }
+    ]
+}
+
+function getBrowser() { 
+    return [ 
+        { 
+            title: 'Browser',
+            children: []
+        }
+    ]
+}
+
+function getVue() { 
+    return [ 
+        { 
+            title: 'Vue基础',
+            children: [
+                'VueBase/1'
+            ]
+        },
+        {
+            title: 'Vue深入',
+            children: [
+                'VueDeep/2'
+            ]
+        }
+    ]
+}
+
+function getReact() { 
+    return [ 
+        { 
+            title: 'React基础',
+            children: [
+                'ReactBase/1'
+            ]
+        },
+        {
+            title: 'React深入',
+            children: [
+                'ReactDeep/2'
+            ]
+        }
+    ]
+}
+
+function getList() { 
+    return [ 
+        { 
+            title: 'List',
+            children: [
+                'String'
             ]
         }
     ]
