@@ -88,7 +88,7 @@ URN（Universal Resource Name，统一资源名称）
 
 ### 绝对 URI 格式
 
-<img :src="$withBase('/HTTP/HTTP04.png')" alt=""/>
+<img :src="$withBase('/HTTP/HTTP04.png')" alt="URIForm"/>
 
 - 使用 http: 或 https: 等协议方案名获取访问资源时要指定协议类型。也可使用 data: 或 javascript: 这类指定数据或脚本程序的方案名。
 
