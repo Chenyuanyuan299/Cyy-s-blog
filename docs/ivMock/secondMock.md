@@ -127,17 +127,17 @@ sessionStorage：键值对，大小约 5M，仅在本次会话存在，关闭页
 
 ## 9.Vue3.0 对 Vue2.x 做了什么改进？
 
-### 1.数据监听系统的改变：
+#### 1.数据监听系统的改变：
 
-- Vue2.x 使用 ES5 的Object.defineProperty 的 getter 和 setter实现，不能劫持数组，对象等
+- Vue2.x 使用 ES5 的 Object.defineProperty 的 getter 和 setter实现，不能劫持数组，对象等
 - Vue3.0 基于 proxy 实现了全语言（属性新增删除，数组长度变化等）支持和更好新能的提升，避免了再初始化时对对象的每个属性进行代理
 
-### 2.更好的 TypeScript 支持
+#### 2.更好的 TypeScript 支持
 
 - Vue2.x 可能需要引入第三方插件进行 class 形式的代码编写，并通过装饰器进行类型约束
 - Vue3.0 有原生的 Class API 和 TSX
 
-## 3.优化了 Diff 算法
+#### 3.优化了 Diff 算法
 
 - Vue2.x 在运行时会对所有结点生成一个虚拟结点树，当数据发生改变时，会遍历所有节点
 - Vue3.0 修改了 diff 算法，参考了 Svelte 框架的思想，在模板编译时就会进行一些优化来减少运行时的开销，在编译时会对模板进行分析，先分层次，然后找不变化的层，针对变化的层进行 diff。
