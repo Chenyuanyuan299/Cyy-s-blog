@@ -149,7 +149,10 @@ function getIvMock() {
         {
             title: '模拟面试',
             children: [
-                'firstMock'
+                'firstMock',
+                'secondMock',
+                'thirdMock',
+                'lastMock'
             ]
         }
     ]
