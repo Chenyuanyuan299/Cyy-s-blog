@@ -4,6 +4,7 @@ module.exports = {
     title: 'Cyy\'s blog',
     description: '我的博客',
     themeConfig: {
+        logo: '/logo.jpg',
         editLinks: false,
         docsDir: 'docs',
         lastUpdated: 'Last Updated',
