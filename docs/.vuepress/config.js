@@ -33,8 +33,8 @@ module.exports = {
                 text: '面试',
                 ariaLabel: 'interview',
                 items: [
-                    {text: '面试题', link:'/ivList/'},
-                    {text: '模拟面试', link:'/ivMock/'}
+                    {text: '面试题', link:'/ivList/'}
+                    // {text: '模拟面试', link:'/ivMock/'}
                 ]
             },
             {text: 'GitHub', link: 'https://github.com/Chenyuanyuan299'}      
@@ -47,7 +47,7 @@ module.exports = {
             '/Vue/': getVue(),
             '/React/': getReact(),
             '/ivList/': getIvList(),
-            '/ivMock/': getIvMock(), 
+            // '/ivMock/': getIvMock(), 
             '/LeetCode/List/': getList()
         }
     }
@@ -65,7 +65,8 @@ function getFrontend() {
         {
             title: 'JavaScript进阶',
             children: [
-                'JavaScriptUp/upgrade1'
+                'JavaScriptUp/upgrade1',
+                'JavaScriptUp/upgrade2'
             ]
         }
     ]
@@ -145,19 +146,19 @@ function getIvList() {
     ]
 }
 
-function getIvMock() { 
-    return [ 
-        {
-            title: '模拟面试',
-            children: [
-                'firstMock',
-                'secondMock',
-                'thirdMock',
-                'lastMock'
-            ]
-        }
-    ]
-}
+// function getIvMock() { 
+//     return [ 
+//         {
+//             title: '模拟面试',
+//             children: [
+//                 'firstMock',
+//                 'secondMock',
+//                 'thirdMock',
+//                 'lastMock'
+//             ]
+//         }
+//     ]
+// }
 
 function getList() { 
     return [ 
