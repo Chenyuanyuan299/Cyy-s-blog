@@ -29,14 +29,14 @@ module.exports = {
                     {text: 'LeetCode', link: '/LeetCode/List/'}
                 ]
             },
-            // {
-            //     text: '面试',
-            //     ariaLabel: 'interview',
-            //     items: [
-            //         {text: '面试题', link:'/ivList/'},
-            //         {text: '模拟面试', link:'/ivMock/'}
-            //     ]
-            // },
+            {
+                text: '面试',
+                ariaLabel: 'interview',
+                items: [
+                    {text: '面试题', link:'/ivList/'},
+                    {text: '模拟面试', link:'/ivMock/'}
+                ]
+            },
             {text: 'GitHub', link: 'https://github.com/Chenyuanyuan299'}      
         ],
         sidebar: {
@@ -46,8 +46,8 @@ module.exports = {
             '/Browser/': getBrowser(),
             '/Vue/': getVue(),
             '/React/': getReact(),
-            // '/ivList/': getIvList(),
-            // '/ivMock/': getIvMock(), 
+            '/ivList/': getIvList(),
+            '/ivMock/': getIvMock(), 
             '/LeetCode/List/': getList()
         }
     }
@@ -135,30 +135,31 @@ function getReact() {
     ]
 }
 
-// function getIvList() { 
-//     return [ 
-//         { 
-//             title: '面试题列表',
-//             children: [
-//                 'JavaScript'
-//             ]
-//         }
-//     ]
-// }
+function getIvList() { 
+    return [ 
+        { 
+            title: '面试题列表',
+            children: [
+                'JavaScript',
+                'Vue'
+            ]
+        }
+    ]
+}
 
-// function getIvMock() { 
-//     return [ 
-//         {
-//             title: '模拟面试',
-//             children: [
-//                 'firstMock',
-//                 'secondMock',
-//                 'thirdMock',
-//                 'lastMock'
-//             ]
-//         }
-//     ]
-// }
+function getIvMock() { 
+    return [ 
+        {
+            title: '模拟面试',
+            children: [
+                'firstMock',
+                'secondMock',
+                'thirdMock',
+                'lastMock'
+            ]
+        }
+    ]
+}
 
 function getList() { 
     return [ 
