@@ -1,10 +1,10 @@
 # Vue
 
-## v-show 和 v-if 的区别
+## `v-show` 和 `v-if` 的区别
 
-v-show 通过控制 css 的 display: none 设置组件是否显示，每个组件都会进行缓存；v-if 通过 Vue 本身的机制来控制组件渲染与销毁；
+`v-show` 通过控制 CSS 的 `display: none` 设置组件是否显示，每个组件都会进行缓存；`v-if` 通过 Vue 本身的机制来控制组件渲染与销毁；
 
-当组件需要频繁切换时使用 v-show，当组件不经常切换时使用 v-if；
+当组件需要频繁切换时使用 `v-show`，当组件不经常切换时使用 `v-if`；
 
 ## 为何 v-for 需要 key
 
@@ -46,11 +46,23 @@ v-show 通过控制 css 的 display: none 设置组件是否显示，每个组�
 
 ## 插槽
 
-slot基本使用：可以把父组件的子元素、子节点插入到子组件的<\slot>中，可以设置默认值
+slot 基本使用：可以把父组件的子元素、子节点插入到子组件的<\slot>中，可以设置默认值
 
-作用域插槽：子组件定义一个动态属性比如 `:slotData="webData"`，父组件使用 `v-slot="slotProps"  {{slotProps.slotData.title}}`接受子组件的数据，然后插入到子组件的<\slot>中
+作用域插槽：子组件定义一个动态属性比如：
 
-具名插槽：父组件定义`v-slot:xxx`，子组件`<slot name="xxx">`进行对应
+``` vue
+:slotData="webData"
+```
+
+父组件使用以下代码接受子组件的数据，然后插入到子组件的<\slot>中
+
+```vue
+v-slot="slotProps"  {{slotProps.slotData.title}}
+```
+
+
+
+具名插槽：父组件定义 v-slot:xxx，子组件 <\slot name="xxx"> 进行对应
 
 ## computed 和 watch 的区别
 
@@ -68,7 +80,7 @@ hash、history（需要服务端支持）
 
 缓存组件即组件只会渲染一次，频繁切换不用重复渲染，Vue 常见性能优化
 
-相对来说 v-show 只是使用 CSS 的 display 属性进行显隐控制，比较低级，用在小型组件；keep-alive 在 Vue（框架）层级进行的 Js 对象的渲染，可以用在很多场景，比如大型组件列表 tab 切换。
+相对来说`v-show` 只是使用 CSS 的 display 属性进行显隐控制，比较低级，用在小型组件；keep-alive 在 Vue（框架）层级进行的 Js 对象的渲染，可以用在很多场景，比如大型组件列表 tab 切换。
 
 ## 为何组件 data 必须是一个函数？
 
@@ -77,6 +89,4 @@ hash、history（需要服务端支持）
 ## ajax 请求放在哪个生命周期
 
 mounted
-
-
 
