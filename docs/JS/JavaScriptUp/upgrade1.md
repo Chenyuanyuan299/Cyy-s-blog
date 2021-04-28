@@ -161,7 +161,7 @@ console.log(obj1); // obj1 {[1, [2, 3]], name: "HTML"}
 console.log(obj2); // obj2 {[2, [5, 6, 7]], name: "HTML"}
 ```
 
-Ps:根据以上结果，对于操作的数据是对象还是数组的不同，第一层看似有所不同，很可能是数组转化成对象时发生了某些变化。
+Ps: 根据以上结果，对于操作的数据是对象还是数组的不同，第一层看似有所不同，很可能是数组转化成对象时发生了某些变化。
 
 ## 实现深拷贝
 
@@ -194,9 +194,9 @@ let obj2 = deepClone(obj1);
 console.log(obj2); // Uncaught RangeError: Maximum call stack size exceeded 栈内存溢出
 ```
 
-为了解决循环引用问题，我们需要给当前对象和拷贝对象的映射关系开辟一个空间，拷贝之前先去这个空间中查看该对象是否被拷贝过，如果有就直接返回，如果没有就继续拷贝。
+为了解决循环引用问题，我们需要给当前对象和拷贝对象的映射关系开辟一个空间，拷贝之前先去这个空间中查看该对象是否被拷贝过，如果有就直接返回，如果没有就继续拷贝，我们可以使用 WeakMap 来储存映射关系。
 
-使用 WeakMap 代替 Map 的好处是减少内存的消耗，并且不干扰垃圾回收机制，但是要注意，由于 WeakMap 是弱引用，所以它的 key 值是不可枚举的。详情参考 MDN [Why WeekMap](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)。
+使用 WeakMap 代替 Map 的好处是减少内存的消耗，并且不干扰垃圾回收机制，但是要注意，WeakMap 中的 key 必须是对象；由于 WeakMap 是弱引用，所以它的 key 值是不可枚举的，如果key 是可枚举的话，其列表将会受垃圾回收机制的影响，从而得到不确定的结果。详情参考 MDN [Why WeekMap](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)。
 
 ``` javascript
 function deepCloneUp(source, map = new WeakMap()) { 

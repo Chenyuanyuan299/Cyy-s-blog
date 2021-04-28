@@ -59,7 +59,8 @@ function getFrontend() {
         {
             title: 'JavaScript',
             children: [
-                'JavaScript/dataType'
+                'JavaScript/dataType',
+                'JavaScript/inherit'
             ]
         },
         {

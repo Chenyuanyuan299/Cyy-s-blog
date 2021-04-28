@@ -37,7 +37,7 @@
 
 ## 4.JS有什么基本数据类型？怎么区分 Object 和 Array？
 
-- 7种，Number、BigInt、String、Boolean、Symbol、undefined、null，其中，`typeof null // “object”`（这是历史遗留问题），NaN 是 Number 类型，undefine 只和 null `==`。正确判断 null `Object.prototype.toString.call(null) // "[object Null]" `。
+- 7种，Number、BigInt、String、Boolean、Symbol、undefined、null。
 
 - 区分Object 和 Array
 
