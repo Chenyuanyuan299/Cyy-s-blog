@@ -34,6 +34,7 @@ module.exports = {
                 ariaLabel: 'interview',
                 items: [
                     {text: '面试题', link:'/ivList/'},
+                    {text: '面试经历', link:'/interview/'}
                     // {text: '模拟面试', link:'/ivMock/'}
                 ]
             },
@@ -47,6 +48,7 @@ module.exports = {
             '/Vue/': getVue(),
             '/React/': getReact(),
             '/ivList/': getIvList(),
+            '/interview/': getInterview(),
             // '/ivMock/': getIvMock(), 
             '/LeetCode/List/': getList()
         }
@@ -143,6 +145,17 @@ function getIvList() {
             children: [
                 'JavaScript',
                 'Vue'
+            ]
+        }
+    ]
+}
+
+function getInterview() { 
+    return [
+        {
+            title: '面试经历',
+            children: [
+                '腾讯一面'
             ]
         }
     ]
