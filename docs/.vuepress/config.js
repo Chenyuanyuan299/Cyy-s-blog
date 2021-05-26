@@ -14,19 +14,21 @@ module.exports = {
                 text: '前端',
                 ariaLabel: 'Frontend',
                 items: [
-                    {text : 'JS', link: '/JS/'},
+                    {text : 'JavaScript', link: '/JS/'},
+                    {text : 'TypeScript', link: '/TS/'},
                     {text : 'CSS', link: '/CSS/'},
                     {text : 'HTTP', link: '/HTTP/'},
                     {text : '浏览器', link: '/Browser/'},
                     {text : 'Vue', link: '/Vue/'},
-                    {text : 'React', link: '/React/'},  
+                    {text : 'React', link: '/React/'}
                 ]
             },
-            {
-                text: 'LeetCode', 
-                ariaLabel: 'LeetCode',
-                items: [ 
-                    {text: 'LeetCode', link: '/LeetCode/List/'}
+            { 
+                text: '项目工具',
+                ariaLabel: 'Project-tools',
+                items: [
+                    {text : 'Webpack', link: '/Webpack/'},
+                    {text : 'git', link: '/Git/'}
                 ]
             },
             {
@@ -38,15 +40,24 @@ module.exports = {
                     // {text: '模拟面试', link:'/ivMock/'}
                 ]
             },
+            {
+                text: 'LeetCode', 
+                ariaLabel: 'LeetCode',
+                items: [ 
+                    {text: 'LeetCode', link: '/LeetCode/List/'}
+                ]
+            },
             {text: 'GitHub', link: 'https://github.com/Chenyuanyuan299'}      
         ],
         sidebar: {
-            '/JS/': getFrontend(),
+            '/JS/': getJavaScript(),
+            '/TS/': getTypeScript(),
             '/CSS/': getCSS(),
             '/HTTP/': getHTTP(),
             '/Browser/': getBrowser(),
             '/Vue/': getVue(),
             '/React/': getReact(),
+            '/Webpack/': getWebpack(),
             '/ivList/': getIvList(),
             '/interview/': getInterview(),
             // '/ivMock/': getIvMock(), 
@@ -56,7 +67,7 @@ module.exports = {
 }
 
 
-function getFrontend() { 
+function getJavaScript() { 
     return [
         {
             title: 'JavaScript',
@@ -70,6 +81,29 @@ function getFrontend() {
             children: [
                 'JavaScriptUp/upgrade1',
                 'JavaScriptUp/upgrade2'
+            ]
+        }
+    ]
+}
+
+function getTypeScript() { 
+    return [
+        {
+            title: 'TypeScript',
+            children: [
+                'TypeScript/TypeScript',
+                'TypeScript/TypeScriptUP',
+                'TypeScript/TSprogress',
+                'TypeScript/type-annotation'
+            ]
+        },
+        {
+            title: 'TS+Express爬虫项目',
+            children: [
+                'ts-crawler/crawler1',
+                'ts-crawler/crawler2',
+                'ts-crawler/crawler3',
+                'ts-crawler/crawler4',
             ]
         }
     ]
@@ -133,6 +167,17 @@ function getReact() {
             title: 'React深入',
             children: [
                 'ReactDeep/2'
+            ]
+        }
+    ]
+}
+
+function getWebpack() { 
+    return [ 
+        { 
+            title: 'Webpack',
+            children: [
+                'Webpack'
             ]
         }
     ]
