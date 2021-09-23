@@ -282,7 +282,7 @@ namespace Components {
 namespace Home {
   export namespace Wang {
     export const teacher: Components.user = {
-      name: 'wang'
+      name: 'Wang'
     };
   }
   export class Page {

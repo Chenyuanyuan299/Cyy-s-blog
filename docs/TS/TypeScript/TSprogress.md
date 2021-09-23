@@ -35,7 +35,7 @@ function testDecorator(constructor: any) {
   console.log('Wang'); // 后执行
 }
 function testDecorator1(constructor: any) {
-  console.log('JiaoTeng'); // 先执行
+  console.log('Laoshi'); // 先执行
 }
 // 装饰器先收集，然后被先收集的后执行
 // 使用多行方式
@@ -111,7 +111,7 @@ const test = new Test();
 function testDecorator<T extends new (...args: any[]) => {}>(constructor: T) {
   // 对 constructor 做拓展的正确写法
   return class extends constructor {
-    name = 'Wang JiaoTeng';
+    name = 'Wang Laoshi';
     getName() {
       return this.name;
     }
@@ -136,7 +136,7 @@ console.log((test as any).getName()); // 后打印
 function testDecorator() {
   return function<T extends new (...args: any[]) => {}>(constructor: T) {
     return class extends constructor {
-      name = 'Wang JiaoTeng';
+      name = 'Wang Laoshi';
       getName() {
         return this.name;
       }
@@ -171,7 +171,7 @@ function getNameDecorator(target: any, key: string, descriptor: PropertyDescript
   // console.log(target, key);
   // descriptor.writable = false;
   descriptor.value = function() { // 修改原方法的值
-    return 'Wang JiaoTeng';
+    return 'Wang Laoshi';
   }
 } 
 
@@ -212,7 +212,7 @@ class Test {
 }
 
 const test = new Test('Wang');
-test.name = 'Wang JiaoTeng'
+test.name = 'Wang Laoshi'
 console.log(test.name); // 报错
 ```
 
@@ -244,7 +244,7 @@ class Test {
 }
 
 const test = new Test();
-test.name = 'JiaoTeng';
+test.name = 'Laoshi';
 console.log(test.name);
 ```
 
@@ -252,7 +252,7 @@ console.log(test.name);
 
 ```typescript
 function nameDecorator(target: any, key: string) {
-  target[key] = 'JiaoTeng';
+  target[key] = 'Laoshi';
 } 
 
 class Test {
@@ -262,7 +262,7 @@ class Test {
 
 const test = new Test();
 console.log(test.name); // Wang
-console.log((test as any).__proto__.name); // JiaoTeng
+console.log((test as any).__proto__.name); // Laoshi
 ```
 
 ## 参数装饰器

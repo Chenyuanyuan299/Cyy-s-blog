@@ -184,7 +184,7 @@ const objArray: Teacher[] = [{
 
 ```typescript
 // 这是一个元组
-const teacherInfo: [string, string, number] = ['Wang', 'JiaoTeng', 18];
+const teacherInfo: [string, string, number] = ['Wang', 'Laoshi', 18];
 ```
 
 ## interface 接口
@@ -233,7 +233,7 @@ setPersonName({
 	teach() { 
 		return 'teach'
 	}
-}, 'JiaoTeng') // 要修改的姓名
+}, 'Laoshi') // 要修改的姓名
 ```
 
 接口也可以定义函数（类型别名也可以）
@@ -261,11 +261,11 @@ class Person {
 }
 class Teacher extends Person { 
 	getTeacherName() {
-		return 'JiaoTeng';
+		return 'Laoshi';
 	}
 	getName() { 
-        // return 'JiaoTeng'; // 子类可以重写从父类继承的方法
-		return super.getName() + 'JiaoTeng' // 子类在重写之后可以使用super调用父类的方法
+        // return 'Laoshi'; // 子类可以重写从父类继承的方法
+		return super.getName() + 'Laoshi' // 子类在重写之后可以使用super调用父类的方法
 	}
 }
 const teacher = new Teacher();
@@ -355,7 +355,7 @@ console.log(teacher.age); // 18
 class Person { 
 	constructor(private _name: string) {}
 	get name() {// 一般会进行加密封装等操作
-		return this._name + ' JiaoTeng';
+		return this._name + ' Laoshi';
 	}
 	set name(name: string) {
         const realName = name.split('')[0];

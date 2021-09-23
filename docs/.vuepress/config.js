@@ -14,10 +14,10 @@ module.exports = {
                 text: '前端',
                 ariaLabel: 'Frontend',
                 items: [
-                    {text : 'JavaScript', link: '/JS/'},
+                    {text : 'JavaScript', link: '/JavaScript/'},
                     {text : 'TypeScript', link: '/TS/'},
                     {text : 'CSS', link: '/CSS/'},
-                    {text : 'HTTP', link: '/HTTP/'},
+                    {text : '计算机网络', link: '/NetWork/'},
                     {text : '浏览器', link: '/Browser/'},
                     {text : 'Vue', link: '/Vue/'},
                     {text : 'React', link: '/React/'}
@@ -31,15 +31,15 @@ module.exports = {
                     {text : 'git', link: '/Git/'}
                 ]
             },
-            {
-                text: '面试',
-                ariaLabel: 'interview',
-                items: [
-                    {text: '面试题', link:'/ivList/'},
-                    {text: '面试经历', link:'/interview/'}
-                    // {text: '模拟面试', link:'/ivMock/'}
-                ]
-            },
+            // {
+            //     text: '面试',
+            //     ariaLabel: 'interview',
+            //     items: [
+            //         {text: '面试题', link:'/ivList/'},
+            //         {text: '面试经历', link:'/interview/'},
+            //         {text: '模拟面试', link:'/ivMock/'}
+            //     ]
+            // },
             {
                 text: 'LeetCode', 
                 ariaLabel: 'LeetCode',
@@ -50,16 +50,16 @@ module.exports = {
             {text: 'GitHub', link: 'https://github.com/Chenyuanyuan299'}      
         ],
         sidebar: {
-            '/JS/': getJavaScript(),
+            '/JavaScript/': getJavaScript(),
             '/TS/': getTypeScript(),
             '/CSS/': getCSS(),
-            '/HTTP/': getHTTP(),
+            '/NetWork/': getNetWork(),
             '/Browser/': getBrowser(),
             '/Vue/': getVue(),
             '/React/': getReact(),
             '/Webpack/': getWebpack(),
-            '/ivList/': getIvList(),
-            '/interview/': getInterview(),
+            // '/ivList/': getIvList(),
+            // '/interview/': getInterview(),
             // '/ivMock/': getIvMock(), 
             '/LeetCode/List/': getList()
         }
@@ -72,15 +72,17 @@ function getJavaScript() {
         {
             title: 'JavaScript',
             children: [
-                'JavaScript/dataType',
-                'JavaScript/inherit'
-            ]
-        },
-        {
-            title: 'JavaScript进阶',
-            children: [
-                'JavaScriptUp/upgrade1',
-                'JavaScriptUp/upgrade2'
+                'dataType',
+                'context',
+                'array',
+                'object1',
+                'object2',
+                'object3',
+                'object4',
+                'function1',
+                'function2',
+                'promise',
+                'copy'
             ]
         }
     ]
@@ -118,11 +120,15 @@ function getCSS() {
     ]
 }
 
-function getHTTP() { 
+function getNetWork() { 
     return [ 
         { 
-            title: 'HTTP',
+            title: 'NetWork',
             children: [
+                'networkArch',
+                'physicalLayer',
+                'dataLinkLayer',
+                'MAC、IP、ARP',
                 'beforeHTTP',
             ]
         }
@@ -133,7 +139,9 @@ function getBrowser() {
     return [ 
         { 
             title: 'Browser',
-            children: []
+            children: [
+                '内核 or 引擎？'
+            ]
         }
     ]
 }
@@ -160,7 +168,8 @@ function getReact() {
         { 
             title: 'React基础',
             children: [
-                'ReactBase/1'
+                'ReactBase/history',
+                'ReactBase/component'
             ]
         },
         {
@@ -206,19 +215,19 @@ function getInterview() {
     ]
 }
 
-// function getIvMock() { 
-//     return [ 
-//         {
-//             title: '模拟面试',
-//             children: [
-//                 'firstMock',
-//                 'secondMock',
-//                 'thirdMock',
-//                 'lastMock'
-//             ]
-//         }
-//     ]
-// }
+function getIvMock() { 
+    return [ 
+        {
+            title: '模拟面试',
+            children: [
+                'firstMock',
+                'secondMock',
+                'thirdMock',
+                'lastMock'
+            ]
+        }
+    ]
+}
 
 function getList() { 
     return [ 

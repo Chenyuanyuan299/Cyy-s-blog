@@ -2,7 +2,7 @@
 home: true
 heroImage: /logo.jpg
 actionText: 开始学习
-actionLink: /JS/
+actionLink: /JavaScript/
 features:
 - title: 学习笔记
   details: 博客中记录了很多JS、CSS等的常见问题和进阶问题，还有计算机网络和浏览器的相关知识
