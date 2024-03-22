@@ -9,59 +9,66 @@ module.exports = {
         docsDir: 'docs',
         lastUpdated: 'Last Updated',
         smoothScroll: true,
-        nav:[ // 导航栏配置
+        nav:[
             { 
                 text: '前端',
                 ariaLabel: 'Frontend',
                 items: [
-                    {text : 'JavaScript', link: '/JavaScript/'},
-                    {text : 'TypeScript', link: '/TS/'},
-                    {text : 'CSS', link: '/CSS/'},
-                    {text : '计算机网络', link: '/NetWork/'},
-                    {text : '浏览器', link: '/Browser/'},
-                    {text : 'Vue', link: '/Vue/'},
-                    {text : 'React', link: '/React/'}
+                    {text: 'JavaScript', link: '/JavaScript/'},
+                    {text: 'CSS', link: '/CSS/'},
+                    {text: 'Vue', link: '/Vue/'},
+                    {text: 'React', link: '/React/'},
+                    {text: 'Node', link: '/Node/'},
+                    {text: 'Browser', link: '/Browser/'},
+                    {text: 'TypeScript', link: '/TypeScript/'}
+                ]
+            },
+            {
+                text: '计算机基础',
+                ariaLabel: 'Computer-base',
+                items: [
+                    {text: '计算机网络', link: '/NetWork/'},
                 ]
             },
             { 
-                text: '项目工具',
-                ariaLabel: 'Project-tools',
+                text: '项目构建',
+                ariaLabel: 'Project-building',
                 items: [
-                    {text : 'Webpack', link: '/Webpack/'},
-                    {text : 'git', link: '/Git/'}
+                    {text: 'Webpack', link: '/Webpack/'},
+                    {text: 'Git', link: '/Git/'}
+                ]
+            },
+            {
+                text: 'LeetCode', 
+                ariaLabel: 'LeetCode',
+                items: [ 
+                    {text: 'LeetCode', link: '/LeetCode/'}
                 ]
             },
             // {
             //     text: '面试',
             //     ariaLabel: 'interview',
             //     items: [
-            //         {text: '面试题', link:'/ivList/'},
             //         {text: '面试经历', link:'/interview/'},
             //         {text: '模拟面试', link:'/ivMock/'}
             //     ]
             // },
-            {
-                text: 'LeetCode', 
-                ariaLabel: 'LeetCode',
-                items: [ 
-                    {text: 'LeetCode', link: '/LeetCode/List/'}
-                ]
-            },
             {text: 'GitHub', link: 'https://github.com/Chenyuanyuan299'}      
         ],
         sidebar: {
             '/JavaScript/': getJavaScript(),
-            '/TS/': getTypeScript(),
             '/CSS/': getCSS(),
-            '/NetWork/': getNetWork(),
-            '/Browser/': getBrowser(),
             '/Vue/': getVue(),
             '/React/': getReact(),
+            '/Node/': getNode(),
+            '/Browser/': getBrowser(),
+            '/TypeScript/': getTypeScript(),
+            '/NetWork/': getNetWork(),
             '/Webpack/': getWebpack(),
-            // '/ivList/': getIvList(),
+            '/Git/': getGit(),
+            '/LeetCode/': getList()
             // '/interview/': getInterview(),
             // '/ivMock/': getIvMock(), 
-            '/LeetCode/List/': getList()
         }
     }
 }
@@ -70,19 +77,97 @@ module.exports = {
 function getJavaScript() { 
     return [
         {
-            title: 'JavaScript',
+            title: 'JavaScript基础',
             children: [
-                'dataType',
-                'context',
-                'array',
-                'object1',
-                'object2',
-                'object3',
-                'object4',
-                'function1',
-                'function2',
-                'promise',
-                'copy'
+                '/JavaScriptBase/dataType',
+                '/JavaScriptBase/context',
+                '/JavaScriptBase/array',
+                '/JavaScriptBase/object1',
+                '/JavaScriptBase/object2',
+                '/JavaScriptBase/object3',
+                '/JavaScriptBase/object4',
+                '/JavaScriptBase/function1',
+                '/JavaScriptBase/function2',
+                '/JavaScriptBase/promise',
+            ]
+        },
+        {
+            title: 'JavaScript进阶',
+            children: [
+                '/JavaScriptDeep/copy',
+                '/JavaScriptDeep/anti-shake&throttling',
+            ]
+        }
+    ]
+}
+
+function getCSS() { 
+    return [
+        {
+            title: 'CSS',
+            children: []
+        }
+    ]
+}
+
+function getVue() { 
+    return [ 
+        { 
+            title: 'Vue基础',
+            children: [
+                'VueBase/1'
+            ]
+        },
+        {
+            title: 'Vue深入',
+            children: [
+                'VueDeep/overview-of-frame-design',
+                'VueDeep/responsive-system'
+            ]
+        }
+    ]
+}
+
+function getReact() { 
+    return [ 
+        { 
+            title: 'React基础',
+            children: [
+                'ReactBase/history',
+                'ReactBase/component',
+                'ReactBase/event',
+                'ReactBase/virtual-DOM',
+                'ReactBase/component-communication',
+                'ReactBase/setState'
+            ]
+        },
+        {
+            title: 'React深入',
+            children: [
+                'ReactDeep/useEffect',
+                'ReactDeep/uncontrolled'
+            ]
+        }
+    ]
+}
+
+function getNode() {
+    return [
+        {
+            title: 'Node',
+            children: [
+                'Node/modules'
+            ]
+        }
+    ]
+}
+
+function getBrowser() { 
+    return [ 
+        { 
+            title: 'Browser',
+            children: [
+                'kernel&engine'
             ]
         }
     ]
@@ -94,28 +179,19 @@ function getTypeScript() {
             title: 'TypeScript',
             children: [
                 'TypeScript/TypeScript',
-                'TypeScript/TypeScriptUP',
-                'TypeScript/TSprogress',
+                'TypeScript/TypeScriptDeep',
+                'TypeScript/TypeScriptProgress',
                 'TypeScript/type-annotation'
             ]
         },
         {
-            title: 'TS+Express爬虫项目',
+            title: 'TypeScript+Express爬虫项目',
             children: [
-                'ts-crawler/crawler1',
-                'ts-crawler/crawler2',
-                'ts-crawler/crawler3',
-                'ts-crawler/crawler4',
+                'TypeScript&Crawler/crawler1',
+                'TypeScript&Crawler/crawler2',
+                'TypeScript&Crawler/crawler3',
+                'TypeScript&Crawler/crawler4',
             ]
-        }
-    ]
-}
-
-function getCSS() { 
-    return [
-        {
-            title: 'CSS',
-            children: []
         }
     ]
 }
@@ -135,52 +211,6 @@ function getNetWork() {
     ]
 }
 
-function getBrowser() { 
-    return [ 
-        { 
-            title: 'Browser',
-            children: [
-                '内核 or 引擎？'
-            ]
-        }
-    ]
-}
-
-function getVue() { 
-    return [ 
-        { 
-            title: 'Vue基础',
-            children: [
-                'VueBase/1'
-            ]
-        },
-        {
-            title: 'Vue深入',
-            children: [
-                'VueDeep/2'
-            ]
-        }
-    ]
-}
-
-function getReact() { 
-    return [ 
-        { 
-            title: 'React基础',
-            children: [
-                'ReactBase/history',
-                'ReactBase/component'
-            ]
-        },
-        {
-            title: 'React深入',
-            children: [
-                'ReactDeep/2'
-            ]
-        }
-    ]
-}
-
 function getWebpack() { 
     return [ 
         { 
@@ -192,14 +222,20 @@ function getWebpack() {
     ]
 }
 
-function getIvList() { 
+function getGit() { 
     return [ 
         { 
-            title: '面试题列表',
-            children: [
-                'JavaScript',
-                'Vue'
-            ]
+            title: 'Git',
+            children: []
+        }
+    ]
+}
+
+function getList() { 
+    return [ 
+        { 
+            title: 'List',
+            children: []
         }
     ]
 }
@@ -224,17 +260,6 @@ function getIvMock() {
                 'secondMock',
                 'thirdMock',
                 'lastMock'
-            ]
-        }
-    ]
-}
-
-function getList() { 
-    return [ 
-        { 
-            title: 'List',
-            children: [
-                'String'
             ]
         }
     ]
