@@ -79,23 +79,23 @@ function getJavaScript() {
         {
             title: 'JavaScript基础',
             children: [
-                '/JavaScriptBase/dataType',
-                '/JavaScriptBase/context',
-                '/JavaScriptBase/array',
-                '/JavaScriptBase/object1',
-                '/JavaScriptBase/object2',
-                '/JavaScriptBase/object3',
-                '/JavaScriptBase/object4',
-                '/JavaScriptBase/function1',
-                '/JavaScriptBase/function2',
-                '/JavaScriptBase/promise',
+                'JavaScriptBase/dataType',
+                'JavaScriptBase/context',
+                'JavaScriptBase/array',
+                'JavaScriptBase/object1',
+                'JavaScriptBase/object2',
+                'JavaScriptBase/object3',
+                'JavaScriptBase/object4',
+                'JavaScriptBase/function1',
+                'JavaScriptBase/function2',
+                'JavaScriptBase/promise',
             ]
         },
         {
             title: 'JavaScript进阶',
             children: [
-                '/JavaScriptDeep/copy',
-                '/JavaScriptDeep/anti-shake&throttling',
+                'JavaScriptDeep/copy',
+                'JavaScriptDeep/anti-shake&throttling',
             ]
         }
     ]
