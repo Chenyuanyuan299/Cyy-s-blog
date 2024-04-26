@@ -2,8 +2,8 @@
 
 ECMAScript中的数据类型可分为两种：
 
-- 基本类型：Number,BigInt,String,Boolean,null,undefined,Symbol
-- 引用类型：Object: [Array,Date,Function,RegExp,Math] 等
+- 基本类型：Number, BigInt, String, Boolean, null, undefined, Symbol
+- 引用类型：Object: [Array, Date, Function, RegExp, Math] 等
 
 基本类型存储在栈内存中，被引用或拷贝时，会创建一个完全相等的变量；
 
@@ -129,15 +129,15 @@ Object.prototype.toString.call(window);		// "[object Window]"
 
 ```javascript
 let a = {
-  valueOf() {
-    return 0
-  },
-  toString() {
-    return '1'
-  },
-  [Symbol.toPrimitive]() {
-    return 2
-  }
+    valueOf() {
+        return 0
+    },
+    toString() {
+        return '1'
+    },
+    [Symbol.toPrimitive]() {
+        return 2
+    }
 }
 1 + a // 3
 ```

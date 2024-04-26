@@ -34,7 +34,7 @@ Promise 有三种状态：
 - 兑现（fulfilled，有时候称为解决，resolved）
 - 拒绝（rejected）
 
-Promise 一开始是 peding 状态，通过某些操作后，peding 可能会落定（settle）为代表成功的 fulfilled 或者代表失败的 rejected，这个过程不可逆转，落定后的状态不可再改变。最重要的是，该状态是私有的，不能通过 JavaScript 检测到，这主要是为了避免根据读取到的状态，以同步的方式处理 Promise 对象。
+Promise 一开始是 pending 状态，通过某些操作后，pending 可能会落定（settle）为代表成功的 fulfilled 或者代表失败的 rejected，这个过程不可逆转，落定后的状态不可再改变。最重要的是，该状态是私有的，不能通过 JavaScript 检测到，这主要是为了避免根据读取到的状态，以同步的方式处理 Promise 对象。
 
 Promise 的状态是私有的，只能通过内部的执行器函数中完成，执行器函数主要有两项职责：初始化 Promise 的异步行为和控制状态的最终转换。控制状态的转换主要由两个函数参数实现，分别为 resolve() 和 reject()。每个期约只要状态发生切换，就会有一个私有的内部值或者理由，默认值是 undefined。
 
@@ -58,15 +58,16 @@ setTimeout(console.log, 0, Promise.reject(Promise.resolve())); /// Promise <reje
 Promise.reject() 会实例化一个拒绝的期约并抛出一个异步错误，这个错误不能由 try/catch 捕获，而只能通过拒绝处理程序捕获。
 
 ```javascript
-try { 
- throw new Error('foo'); 
-} catch(e) { 
- console.log(e); // Error: foo 
-} 
-try { 
- Promise.reject(new Error('bar')); 
-} catch(e) { 
- console.log(e); 
+try {
+    throw new Error('foo');
+} catch (e) {
+    console.log(e); // Error: foo 
+}
+// 异步抛出的错误并未被捕获
+try {
+    Promise.reject(new Error('bar'));
+} catch (e) {
+    console.log(e);
 } 
 // Uncaught (in promise) Error: bar
 ```
@@ -125,19 +126,19 @@ setTimeout(console.log, 0, p4); // Promise <rejected>: baz
 
 ## Promise 连锁与合成
 
-​	把期约串联起来是一种有用的编程模式。要真正执行异步任务，可以让每个执行器都返回一个期约实例。这样就可以让每个后续期约都等待之前的期约，也就是串行化异步任务。
+把期约串联起来是一种有用的编程模式。要真正执行异步任务，可以让每个执行器都返回一个期约实例。这样就可以让每个后续期约都等待之前的期约，也就是串行化异步任务。
 
 ```javascript
-function delayedResolve(str) { 
- return new Promise((resolve, reject) => { 
- console.log(str); 
- setTimeout(resolve, 1000); 
- }); 
-} 
-delayedResolve('p1 executor') 
- .then(() => delayedResolve('p2 executor')) 
- .then(() => delayedResolve('p3 executor')) 
- .then(() => delayedResolve('p4 executor')) 
+function delayedResolve(str) {
+    return new Promise((resolve, reject) => {
+        console.log(str);
+        setTimeout(resolve, 1000);
+    });
+}
+delayedResolve('p1 executor')
+    .then(() => delayedResolve('p2 executor'))
+    .then(() => delayedResolve('p3 executor'))
+    .then(() => delayedResolve('p4 executor'))
 // p1 executor（1 秒后）
 // p2 executor（2 秒后）
 // p3 executor（3 秒后）
@@ -145,3 +146,45 @@ delayedResolve('p1 executor')
 ```
 
 每个后续的处理程序都会等待前一个期约解决，然后实例化一个新期约并返回它。这种结构可以简洁地将异步任务串行化，解决之前依赖回调的难题，也就是地狱回调。
+
+连锁可以构建有向非循环图，期约的处理程序是**先**添加到消息队列，**然后**才逐个执行，对应树的层序遍历。
+
+考虑到根节点不唯一，也可以将多个期约组合成一个期约。
+
+### Promise.all()
+
+Promise.all() 静态方法创建的期约会在一组期约全部解决后在解决。这个方法接收一个可迭代对象，返回一个新期约。可迭代对象中的元素会通过 Promise.resolve() 转换为期约，Promise.all([]) 等价于执行 Promise.resolve()。
+
+在每个期约中，只要有一个处于 pending，则合成的期约也会一直处于 pending：
+
+```javascript
+let p1 = Promise.all([new Promise(() => {})])
+setTimeout(console.log, 0, p1) // Promise { <pending> }
+```
+
+如果有一个期约拒绝，则合成的期约会返回第一个拒绝期约的理由，并**静默**处理剩下的期约：
+
+```javascript
+let p2 = Promise.all([
+    Promise.reject(3),
+    new Promise((resolve, reject) => setTimeout(reject, 1000))
+])
+p2.catch((reason) => setTimeout(console.log, 0, reason)) // 3
+```
+
+当所有期约都成功解决，则合成期约的解决值是一个包含所有期约解决值的数组，按迭代器顺序返回：
+
+```javascript
+let p3 = Promise.all([
+    Promise.resolve(3),
+    Promise.resolve(),
+    Promise.resolve(4)
+])
+p3.then((values) => setTimeout(console.log, 0, values)) // [3, undefined, 4]
+```
+
+### Promise.race()
+
+Promise,race() 静态方法返回一个包装期约，是一组集合中最先解决或拒绝的期约的镜像。这个方法接收一个可迭代对象，返回一个新期约。可迭代对象中的元素会通过 Promise.resolve() 转换为期约，Promise.race([]) 等价于执行 Promise.resolve()。
+
+Promise.race() 不会对解决或拒绝的期约区别对待。迭代顺序将会决定落定顺序，在此条件下，Promise.race() 会包装第一个完成的期约的解决值或理由并返回新期约。与 Promise.all() 类似，剩下的期约将会被**静默**处理。

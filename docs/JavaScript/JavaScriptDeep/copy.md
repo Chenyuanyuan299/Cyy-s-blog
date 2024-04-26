@@ -34,14 +34,14 @@ a.x //值为20
 
 ECMAScript中的数据类型可分为两种：
 
-- 基本类型：Number,BigInt,String,Boolean,null,undefined,Symbol
-- 引用类型：Object,Array,Date,Function,RegExp等
+- 基本类型：Number, BigInt, String, Boolean, null, undefined, Symbol
+- 引用类型：Object, Array, Date, Function, RegExp 等
 
 首先要明确一点，**深浅拷贝针对的是引用类型的数据**。
 
 ### 赋值与浅拷贝与深拷贝
 
-- 赋值：当我们把一个**引用类型**的数据赋值给一个新的变量的时候，赋的其实是该对象的引用（地址），不论该对象的属性值是基本类型还是引用类型被修改，原来的数据也会跟着改，因为他们的引用指向堆内存中同一个地方。
+- 赋值：当我们把一个**引用类型**的数据赋值给一个新的变量的时候，赋的值其实是该对象的引用（地址），不论该对象的属性值是基本类型还是引用类型，被修改时，原来的数据也会跟着改，因为他们的引用指向堆内存中同一个地方。
 
 - 浅拷贝：浅拷贝会创建一个新的对象（即重新在堆中创建内存），这个对象有着原始对象属性值的精确拷贝，拷贝前后对象的基本类型属性值互不影响，但是拷贝前后对象的引用类型属性值**共享**同一块内存，修改数据会影响其他对象。
 - 深拷贝：深拷贝会创建一个新的对象（即重新在堆中创建内存），并从堆内存中开辟一个新的区域存放属性值是引用类型的数据，即拷贝前后对象的引用类型属性值**不共享**同一块内存，修改数据不会影响其他对象。
@@ -52,63 +52,63 @@ ECMAScript中的数据类型可分为两种：
 // 赋值
 let obj1 = { 
 	name: 'Js',
-    arr: [1, [2, 3], 4]
+	arr: [1, [2, 3], 4]
 };
 let obj2 = obj1;
 obj2.name = 'HTML';
 obj2.arr[1] = [5, 6, 7];
-console.log('obj1',obj1); // obj1 {name: "HTML", arr: [1, [5, 6, 7], 4]}
-console.log('obj2',obj2); // obj2 {name: "HTML", arr: [1, [5, 6, 7], 4]}
+console.log('obj1', obj1); // obj1 {name: "HTML", arr: [1, [5, 6, 7], 4]}
+console.log('obj2', obj2); // obj2 {name: "HTML", arr: [1, [5, 6, 7], 4]}
 ```
 
 ``` javascript
 // 浅拷贝
 let obj1 = { 
-	name: 'Js',
-    arr: [1, [2, 3], 4]
+  name: 'Js',
+  arr: [1, [2, 3], 4]
 };
 let obj2 = shallowClone(obj1);
 obj2.name = 'HTML';
 obj2.arr[1] = [5, 6, 7];
 function shallowClone(source) { 
 	let target = {};
-    for(let i in source) { 
+    for (let i in source) { 
      	if (source.hasOwnProperty(i)) { 
-        	target[i] = source[i];	
-        }
+      	target[i] = source[i];	
+      }
     }
     return target;
 }
-console.log('obj1',obj1); // obj1 {name: "Js", arr: [1, [5, 6, 7], 4]}
-console.log('obj2',obj2); // obj2 {name: "HTML", arr: [1, [5, 6, 7], 4]}
+console.log('obj1', obj1); // obj1 {name: "Js", arr: [1, [5, 6, 7], 4]}
+console.log('obj2', obj2); // obj2 {name: "HTML", arr: [1, [5, 6, 7], 4]}
 ```
 
 ``` javascript
 // 深拷贝
 let obj1 = { 
-	name: 'Js',
-    arr: [1, [2, 3], 4]
+  name: 'Js',
+  arr: [1, [2, 3], 4]
 };
 let obj2 = deepClone(obj1);
 obj2.name = 'HTML';
 obj2.arr[1] = [5, 6, 7];
 function deepClone(source) { 
-    if (source === null) return source;// 为空返回
-	if (typeof source !== "object") return source;// 为基本类型返回
-    if (source instanceof Data) return new Data(source);// 为日期类型返回创建的新实例
-    if (source instanceof RegExp) return new RegExp(source);// 为正则表达式类型返回创建的新实例
-    // 创建一个新实例（.constructor()返回创建source的类型，比如source为Object类型时相当于let target = new Object()）
-    let target = new source.constructor();
-    for(let key in source) { 
-    	if (source.hasOwnProperty(key)) { 
-            // 实现递归拷贝
-        	target[key] = deepClone(source[key]);
-        }
+  if (source === null) return source;// 为空返回
+  if (typeof source !== "object") return source;// 为基本类型返回
+  if (source instanceof Date) return new Date(source);// 为日期类型返回创建的新实例
+  if (source instanceof RegExp) return new RegExp(source);// 为正则表达式类型返回创建的新实例
+  // 创建一个新实例（.constructor() 返回创建 source 的类型，比如 source 为 Object 类型时相当于 let target = new Object()）
+  let target = new source.constructor();
+  for (let key in source) { 
+    if (source.hasOwnProperty(key)) { 
+      // 实现递归拷贝
+      target[key] = deepClone(source[key]);
     }
-    return target;
+  }
+  return target;
 }
-console.log('obj1',obj1); // obj1 {name: "Js", arr: [1, [2, 3], 4]}
-console.log('obj2',obj2); // obj2 {name: "HTML", arr: [1, [5, 6, 7], 4]}
+console.log('obj1', obj1); // obj1 {name: "Js", arr: [1, [2, 3], 4]}
+console.log('obj2', obj2); // obj2 {name: "HTML", arr: [1, [5, 6, 7], 4]}
 ```
 
 ---
@@ -122,25 +122,25 @@ Object.assign() 方法用于将所有可枚举属性的值从一个或多个源�
 当要拷贝的数据只有一层时，也可以称该过程为深拷贝。
 
 ``` javascript
-let obj1 = { name: 'Js', arr: [1, [2, 3], 4]};
+let obj1 = { name: 'Js', arr: [1, [2, 3], 4] };
 let obj2 = Object.assign({}, obj1);
 obj2.name = 'HTML';
 obj2.arr[0] = 2; // 注意此处
 obj2.arr[1] = [5, 6, 7];
-console.log(obj1); // obj1 {name: "Js", arr: [2, [5, 6, 7], 4]}
-console.log(obj2); // obj2 {name: "HTML", arr: [2, [5, 6, 7], 4]}
+console.log('obj1', obj1); // obj1 {name: "Js", arr: [2, [5, 6, 7], 4]}
+console.log('obj2', obj2); // obj2 {name: "HTML", arr: [2, [5, 6, 7], 4]}
 ```
 
 ### 2.扩展运算符... 
 
 ``` javascript
-let obj1 = { name: 'Js', arr: [1, [2, 3], 4]};
+let obj1 = { name: 'Js', arr: [1, [2, 3], 4] };
 let obj2 = {...obj1};
 obj2.name = 'HTML';
 obj2.arr[0] = 2;
 obj2.arr[1] = [5, 6, 7];
-console.log(obj1); // obj1 {name: "Js", arr: [2, [5, 6, 7], 4]}
-console.log(obj2); // obj2 {name: "HTML", arr: [2, [5, 6, 7], 4]}
+console.log('obj1', obj1); // obj1 {name: "Js", arr: [2, [5, 6, 7], 4]}
+console.log('obj2', obj2); // obj2 {name: "HTML", arr: [2, [5, 6, 7], 4]}
 ```
 
 ### 3.Array.prototype.concat() or Array.prototype.slice()
@@ -148,16 +148,15 @@ console.log(obj2); // obj2 {name: "HTML", arr: [2, [5, 6, 7], 4]}
 两个函数的过程类似。
 
 ``` javascript
-let obj1 = [1, [2, 3], {name: 'Js'}];
+let obj1 = [1, [2, 3], { name: 'Js' }];
 let obj2 = obj1.slice(); // let obj2 = obj1.concat();
 obj2[0] = 2;
+obj2[0][1] = 4;
 obj2[1] = [5, 6, 7];
 obj2[2].name = 'HTML';
-console.log(obj1); // obj1 {[1, [2, 3]], name: "HTML"}
-console.log(obj2); // obj2 {[2, [5, 6, 7]], name: "HTML"}
+console.log('obj1', obj1); // obj1 {[1, [2, 4]], name: "HTML"}
+console.log('obj2', obj2); // obj2 {[2, [5, 6, 7]], name: "HTML"}
 ```
-
-Ps: 根据以上结果，对于操作的数据是对象还是数组的不同，第一层看似有所不同，很可能是数组转化成对象时发生了某些变化。
 
 ## 实现深拷贝
 
@@ -171,19 +170,19 @@ let obj2 = JSON.parse(JSON.stringify(obj1));
 obj2[0] = 2;
 obj2[1] = [5, 6, 7];
 obj2[2].name = 'HTML';
-console.log(obj1); // obj1 {[1, [2, 3]], name: "JS"}
-console.log(obj2); // obj2 {[2, [5, 6, 7]], name: "HTML"}
+console.log('obj1', obj1); // obj1 {[1, [2, 3]], name: "JS"}
+console.log('obj2', obj2); // obj2 {[2, [5, 6, 7]], name: "HTML"}
 ```
 
 ### 2.手写递归方法
 
-在上面的赋值与浅拷贝与深拷贝//深拷贝中，我们已经尝试写过 deepClone 方法，但是有几个问题没有解决，比如循环引用。循环引用就是对象的属性直接或者间接调用对象自身的情况，如`source.source = source;`如果我们仍然使用原来的 deepClone 将会导致递归进入死循环、栈内存溢出。
+在上面的赋值与浅拷贝与深拷贝-深拷贝中，我们已经尝试写过 deepClone 方法，但是有几个问题没有解决，比如循环引用。循环引用就是对象的属性直接或者间接调用对象自身的情况，如`source.source = source;`如果我们仍然使用原来的 deepClone 将会导致递归进入死循环、栈内存溢出。
 
 ``` javascript
 // 测试用例
 let obj1 = { 
-	name: 'Js',
-    arr: [1, [2, 3], 4]
+  name: 'Js',
+  arr: [1, [2, 3], 4]
 };
 obj1.obj1 = obj1;
 let obj2 = deepClone(obj1);
@@ -196,27 +195,27 @@ console.log(obj2); // Uncaught RangeError: Maximum call stack size exceeded 栈�
 
 ``` javascript
 function deepCloneUp(source, map = new WeakMap()) { 
-    if (source === null) return source;// 为空返回
+	if (source === null) return source;// 为空返回
 	if (typeof source !== "object") return source;// 为基本类型返回
-    if (source instanceof Data) return new Data(source);// 为日期类型返回创建的新实例
-    if (source instanceof RegExp) return new RegExp(source);// 为正则表达式类型返回创建的新实例
-    // 判断是否拷贝过该对象,有的话直接返回
-    if (map.get(source)) return map.get(source);
-    let target = new source.constructor();
-    // 设置当前对象与拷贝对象的映射关系
-    map.set(source, target);
-    for(let key in source) { 
-    	if (source.hasOwnProperty(key)) { 
-            // 实现递归拷贝
-        	target[key] = deepCloneUp(source[key], map);
-        }
-    }
-    return target;
+	if (source instanceof Date) return new Date(source);// 为日期类型返回创建的新实例
+	if (source instanceof RegExp) return new RegExp(source);// 为正则表达式类型返回创建的新实例
+	// 判断是否拷贝过该对象,有的话直接返回
+	if (map.get(source)) return map.get(source);
+	let target = new source.constructor();
+	// 设置当前对象与拷贝对象的映射关系
+	map.set(source, target);
+	for(let key in source) { 
+  	if (source.hasOwnProperty(key)) { 
+    	// 实现递归拷贝
+    	target[key] = deepCloneUp(source[key], map);
+  	}
+	}
+	return target;
 }
 
 let obj1 = { 
-	name: 'Js',
-    arr: [1, [2, 3], 4]
+  name: 'Js',
+  arr: [1, [2, 3], 4]
 };
 obj1.obj1 = obj1;
 let obj2 = deepCloneUp(obj1);

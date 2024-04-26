@@ -30,7 +30,7 @@ a2.length = 3 // a2长度变为3
 const a3 = [,,,,,] // 使用一串逗号来创建空位，该数组长度为5
 ```
 
-> 注意：在使用数组字面量形式创建数组的时候，不会调用 Array 构造函数，但是当打印或者调用的时候，会对它进行隐式转换，使它的构造函数为 Array。 
+> 注意：在使用数组字面量形式创建数组的时候，不会调用 Array 构造函数，但是当打印或者调用的时候，会对它进行隐式转换，使它的构造函数为 Array。
 
 ### Array.from()
 
@@ -136,43 +136,44 @@ console.log(array); // ["Boy", "Cat", "apple", "dog"]
 console.log(array2 === array); // true
 
 // copyWithin()方法
-let ints,reset = () => ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let array = [];
+reset = () => array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 reset();
-	// 一个参数，等同于ints.copyWithin(5, 0);
-ints.copyWithin(5);
-console.log(ints); // [ 0, 1, 2, 3, 4, 0, 1, 2, 3, 4 ]
+// 一个参数，等同于ints.copyWithin(5, 0);
+array.copyWithin(5);
+console.log(array); // [ 0, 1, 2, 3, 4, 0, 1, 2, 3, 4 ]
 reset(); // 每次运行过后都重置数组，侧面说明改变自身
-	// 两个参数，复制索引从5开始的内容，插入到索引0开始的位置
-ints.copyWithin(0, 5);
-console.log(ints); // [ 5, 6, 7, 8, 9, 5, 6, 7, 8, 9 ]
+// 两个参数，复制索引从5开始的内容，插入到索引0开始的位置
+array.copyWithin(0, 5);
+console.log(array); // [ 5, 6, 7, 8, 9, 5, 6, 7, 8, 9 ]
 reset();
-	// 三个参数，复制索引[0, 3)的内容，插入到索引4开始的位置
-ints.copyWithin(4, 0, 3);
-console.log(ints); // [ 0, 1, 2, 3, 0, 1, 2, 7, 8, 9 ]
+// 三个参数，复制索引[0, 3)的内容，插入到索引4开始的位置
+array.copyWithin(4, 0, 3);
+console.log(array); // [ 0, 1, 2, 3, 0, 1, 2, 7, 8, 9 ]
 
 // fill()方法
 const zeroes = [0, 0, 0, 0, 0];
-	// 一个参数，填充所有项
+// 一个参数，填充所有项
 zeroes.fill(5);
 console.log(zeroes); // [ 5, 5, 5, 5, 5 ]
 zeroes.fill(0);
-	// 两个参数，填充索引大于等于3的项
+// 两个参数，填充索引大于等于3的项
 zeroes.fill(6, 3);
 console.log(zeroes); // [ 0, 0, 0, 6, 6 ]
 zeroes.fill(0);
-	// 三个参数，填充索引[1, 3)的项
+// 三个参数，填充索引[1, 3)的项
 zeroes.fill(7, 1, 3);
 console.log(zeroes); // [ 0, 7, 7, 0, 0 ]
 
 // splice()方法，操作数组功能最强大的方法
 let colors = ["red", "green", "blue"];
-	// 删除
+// 删除
 let removed = colors.splice(0, 1); // 删除第一项，并返回该值，0为索引开始，1为删除个数
 console.log(colors, removed); // [ 'green', 'blue' ] [ 'red' ]
-	// 增加
+// 增加
 removed = colors.splice(1, 0, "yellow", "orange"); // 在索引1的位置插入新的两项
 console.log(colors, removed); // [ 'green', 'yellow', 'orange', 'blue' ] []
-	// 替换
+// 替换
 removed = colors.splice(1, 1, "red", "purple"); // 插入新的两项，并删除一项，实现替换
 console.log(colors, removed); // [ 'green', 'red', 'purple', 'orange', 'blue' ] [ 'yellow' ]
 ```
@@ -200,6 +201,8 @@ console.log(values); // [ 0, 1, 5, 10, 15 ]
 let values = [0, 1, 5, 10, 15];
 values.sort((a, b) => a - b);
 console.log(values); // [ 0, 1, 5, 10, 15 ]
+values.sort((a, b) => b - a);
+console.log(values); // [ 15, 10, 5, 1, 0 ]
 ```
 
 ## 不改变自身的方法
@@ -255,10 +258,10 @@ console.log(numbers.findIndex((element, index, array) => element > 5)); // 3
 
 // 只有非箭头函数才有this！
 console.log(numbers.find(function compare(element, index, array) {
-  return element > this.num
+    return element > this.num
 }, { num : 7 })); // 9
 console.log(numbers.findIndex(function compare(element, index, array) {
-  return element > this.num
+    return element > this.num
 }, { num : 7 })); // 4
 ```
 
@@ -266,8 +269,7 @@ console.log(numbers.findIndex(function compare(element, index, array) {
 
 - **迭代器方法**
 
-在 ES6 中，Array 的原型上暴露了3个用于检索数组内容的方法：keys()、values() 和 entries()。keys()返回数组索引的迭代器，values()返回数组元素的迭代器，而 entries()返回
-索引/值对的迭代器：
+在 ES6 中，Array 的原型上暴露了3个用于检索数组内容的方法：keys()、values() 和 entries()。keys()返回数组索引的迭代器，values()返回数组元素的迭代器，而 entries()返回索引/值对的迭代器：
 
 ```javascript
 const a = ["foo", "bar", "baz", "qux"]; 
@@ -285,8 +287,8 @@ console.log(aEntries); // [[0, "foo"], [1, "bar"], [2, "baz"], [3, "qux"]]
 ```javascript
 const a = ["foo", "bar"]; 
 for (const [idx, element] of a.entries()) { 
-  console.log(idx); 
-  console.log(element); 
+    console.log(idx); 
+    console.log(element); 
 } 
 // 0
 // foo
@@ -304,7 +306,7 @@ ECMAScript 为数组定义了 5 个迭代方法。每个方法接收两个参数
 - map()：对数组每一项都运行传入的函数，返回由每次函数调用的结果构成的数组。
 - some()：对数组每一项都运行传入的函数，如果有一项函数返回 true，则这个方法返回 true。
 
-其中 every() 与 some() 类似：
+其中 every() 与 some() 是功能形态类似（作用不同）的函数：
 
 ```javascript
 const numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1]; 
@@ -335,7 +337,7 @@ forEach() 方法相当于使用 for 循环遍历数组，然后对每一项执�
 ```javascript
 const numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1]; 
 numbers.forEach((item, index, array) => { 
- // 执行某些操作 
+    // 执行某些操作 
 });
 ```
 
@@ -348,14 +350,14 @@ numbers.forEach((item, index, array) => {
 ```javascript
 // reduce()方法
 const array = [1, 2, 3, 4];
-const sum = array.reduce(function(previousValue, value, index, array){
-  console.log(previousValue, value, index, array) 
-  	// 0 1 0 [ 1, 2, 3, 4 ]
-	// 1 2 1 [ 1, 2, 3, 4 ]
-	// 3 3 2 [ 1, 2, 3, 4 ]
- 	// 6 4 3 [ 1, 2, 3, 4 ]
-  return previousValue + value;
-}, 0); // 0是reduce()的第二个参数，若不定义则默认为数组第1项
+const sum = array.reduce(function(previousValue, value, index, array) {
+    console.log(previousValue, value, index, array) 
+    // 0 1 0 [ 1, 2, 3, 4 ]
+    // 1 2 1 [ 1, 2, 3, 4 ]
+    // 3 3 2 [ 1, 2, 3, 4 ]
+    // 6 4 3 [ 1, 2, 3, 4 ]
+    return previousValue + value;
+}, 0); // 0是reduce()的第二个参数，若不定义则默认为数组第1项，归并结果不变
 console.log(sum); // 10
 // 箭头函数的写法
 console.log(array.reduce((p, v) => p * v)); // 24
@@ -376,15 +378,15 @@ array.reduceRight((p, v) => p * v); // 24
 ```javascript
 const a = [1, [2, [3, [4, 5]]]];
 function flatten(arr) {
-  let result = [];
-  for(let i=0; i<a.length; i++) {
-    if(Array.isArray(arr[i])) {
-      result = result.concat(flatten(arr[i]));
-    } else {
-      result.push(arr[i]);
+    let result = [];
+    for(let i=0; i<a.length; i++) {
+        if(Array.isArray(arr[i])) {
+            result = result.concat(flatten(arr[i]));
+        } else {
+            result.push(arr[i]);
+        }
     }
-  }
-  return result;
+    return result;
 }
 console.log(flatten(a)); // [ 1, 2, 3, 4, 5 ]
 ```
@@ -396,25 +398,25 @@ console.log(flatten(a)); // [ 1, 2, 3, 4, 5 ]
 ```javascript
 const a = [1, [2, [3, [4, 5]]]];
 function flatten(arr) {  
-  return arr.reduce((p, v)=> {
-      return p.concat(Array.isArray(v) ? flatten(v) : v);
-  }, []);
+    return arr.reduce((p, v)=> {
+        return p.concat(Array.isArray(v) ? flatten(v) : v);
+    }, []);
 }
 console.log(flatten(a)); // [ 1, 2, 3, 4, 5 ]
 ```
 
-###  扩展运算符实现
+### 扩展运算符实现
 
 （ ... ）操作可以对数组做一层扁平化处理，利用这个思想：
 
 ```javascript
 const a = [1, [2, [3, [4, 5]]]];
 function flatten(arr) {
-  // 只要数组中有嵌套数组，就执行循环
-  while (arr.some(item => Array.isArray(item))) {
-    arr = [].concat(...arr);
-  }
-  return arr;
+    // 只要数组中有嵌套数组，就执行循环
+    while (arr.some(item => Array.isArray(item))) {
+        arr = [].concat(...arr);
+    }
+    return arr;
 }
 console.log(flatten(a));  // [1, 2, 3, 4, 5]
 ```
@@ -425,18 +427,18 @@ console.log(flatten(a));  // [1, 2, 3, 4, 5]
 // toString()方法
 const a = [1, [2, [3, [4, 5]]]];
 function flatten(arr) {
-  return arr.toString().split(',').map(item => {
-    return Number(item);
-  })
+    return arr.toString().split(',').map(item => {
+        return Number(item);
+    })
 }
 console.log(flatten(a));  // [1, 2, 3, 4, 5]
 
 // join()方法
 const a = [1, [2, [3, [4, 5]]]];
 function flatten(arr) {
-  return arr.toString().split(',').map(item => {
-    return Number(item);
-  })
+    return arr.toString().split(',').map(item => {
+        return Number(item);
+    })
 }
 console.log(flatten(a));  // [1, 2, 3, 4, 5]
 ```
@@ -450,8 +452,7 @@ console.log(flatten(a));  // [1, 2, 3, 4, 5]
 ```javascript
 const a = [1, , [2, [3, [4, 5]]]]; // 注意这里传了空值
 function flatten(arr) {
-  return arr.flat(Infinity);
+    return arr.flat(Infinity);
 }
 console.log(flatten(a));  // [1, 2, 3, 4, 5]
 ```
-
