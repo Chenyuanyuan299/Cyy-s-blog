@@ -128,7 +128,7 @@ function getVue() {
         { 
             title: 'Vue基础',
             children: [
-                'VueBase/1'
+                'VueBase/vue2&vue3'
             ]
         },
         {
@@ -157,6 +157,8 @@ function getReact() {
         {
             title: 'React深入',
             children: [
+                'ReactDeep/vue&react',
+                'ReactDeep/react-idea',
                 'ReactDeep/useEffect',
                 'ReactDeep/uncontrolled'
             ]
@@ -183,6 +185,8 @@ function getBrowser() {
                 'kernel&engine',
                 'fromUrl',
                 'repaint&reflow',
+                'event-loops',
+                'performance'
             ]
         }
     ]
