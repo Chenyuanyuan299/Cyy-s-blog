@@ -159,7 +159,7 @@ function getReact() {
             children: [
                 'ReactDeep/vue&react',
                 'ReactDeep/react-idea',
-                'ReactDeep/useEffect',
+                'ReactDeep/react-hooks',
                 'ReactDeep/uncontrolled'
             ]
         }

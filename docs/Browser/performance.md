@@ -21,19 +21,28 @@ Vue3 主要做了体积优化（Tree-shaking）、编译优化和响应式系统
 
 **React**
 
-由于 React 是细粒度更低的应用级框架，它将性能优化的几个方法交给用户使用：
+由于 React 是细粒度更低的应用级框架，它将性能优化的几个方法交给用户使用。
+
+在 React18 以前：
 
 - shouldComponentUpdate（通过对比 state 和 props 确定是否要重新渲染）；
 - PureComponent（与 shouldComponentUpdate 类似）；
-- React.memo（缓存组件，避免不必要的渲染，只能用于函数组件）；
+- 使用 Immutable（减少渲染次数）；
+- 避免使用内联函数（render 时不会创建单独的函数实例）；
+- 事件绑定方式（在constructor 中预先 bind 当前组件，避免 render 操作中重复绑定）；
+
+在 React 18 及之后：
+
+- useState 中，避免重复创建初始状态；
+- useEffect 中，设置正确的依赖项，避免反复调用 Effect 函数；
+- 使用 useMemo 和 useCallback 防止在传递对象或者函数时重新渲染；
+- 使用 useMemo 缓存复杂计算结果；
 
 除此之外， 常见性能优化常见的手段有如下：
 
-- 避免使用内联函数（render 时不会创建单独的函数实例）；
-- 使用 React Fragments 避免额外标签（代替<>...</>）；
-- 使用 Immutable（减少渲染次数）；
+- 使用 React Fragments 避免额外标签（可以简写为 <>...</>，如果要传入 key，请从 react 中导入 Fragment）；
+- 使用 React.memo（缓存组件，允许你的组件在 props 没有改变的情况下跳过重新渲染）；
 - 懒加载组件（Suspense、lazy）；
-- 事件绑定方式（在constructor 中预先 bind 当前组件，避免 render 操作中重复绑定）；
 - SSR 渲染；
 
 ## 代码构建与图片压缩层面
